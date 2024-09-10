@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="https://freesvg.org/img/ethereum-classic-logo.png">
+    <title>Shopkart</title>
+    <style>
+      /* Reset styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        transition: background-color 0.3s, color 0.3s;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        overflow-x: hidden;
+
+      }
+
+      /* Loading Animation */
+      .loading-screen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #b8f73a; /* Dark background for loading screen */
+        z-index: 9999;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .spinner {
+        border: 10px solid #f1f1f1;
+        border-top: 10px solid #4caf50; /* Primary Color */
+        border-radius: 50%;
+        width: 80px;
+        height: 80px;
+        animation: spin 1s linear infinite;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* Color Variables */
+      :root {
+        --bg-color: #f0f4f8;
+        --text-color: #333;
+        --primary-color: #4caf50;
+        --secondary-color: #087f23;
+        --gradient-color: linear-gradient(135deg, #4caf50, #087f23);
+      }
+
+      [data-theme="dark"] {
+        --bg-color: #23232f;
+        --text-color: #f1c100;
+        --primary-color: #1b5e20;
+        --secondary-color: #004d00;
+        --gradient-color: linear-gradient(135deg, #1b5e20, #004d00);
+      }
+
+      header {
+        background: var(--gradient-color);
+        color: white;
+        padding: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+
+      .logo {
+        font-size: 2.2rem;
+        font-weight: bold;
+        letter-spacing: 1px;
+        transition: transform 0.3s ease;
+      }
+
+      nav {
+        display: flex;
+        gap: 30px;
+      }
+
+      nav a {
+        color: white;
+        text-decoration: none;
+        padding: 10px 20px;
+        font-size: 1rem;
+        border-radius: 30px;
+        background-color: rgba(255, 255, 255, 0.2);
+        transition: background-color 0.3s, transform 0.3s ease;
+      }
+
+      nav a:hover {
+        background-color: rgba(255, 255, 255, 0.5);
+        transform: scale(1.05);
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 40px auto;
+        padding: 40px;
+        background-color: rgb(198, 255, 145);
+        border-radius: 15px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        position: relative;
+        overflow: hidden;
+        transition: transform 2s, background-color 2s ease-in;
+      }
+
+      .container::before {
+        content: '';
+        position: absolute;
+        top: -100px;
+        right: -100px;
+        width: 300px;
+        height: 300px;
+        background: var(--gradient-color);
+        border-radius: 50%;
+        opacity: 0.2;
+        animation: rotate 8s infinite linear;
+        z-index: -1;
+      }
+
+      h1 {
+        font-size: 3rem;
+        color: var(--primary-color);
+        margin-bottom: 20px;
+        text-align: center;
+      }
+
+      p {
+        font-size: 1.2rem;
+        line-height: 1.6;
+        text-align: center;
+        margin-bottom: 30px;
+      }
+
+      .btn-primary {
+        display: inline-flex;
+        margin: 0 auto;
+        padding: 15px 40px;
+        background-color: var(--secondary-color);
+        color: white;
+        border-radius: 15px;
+        font-size: 1.2rem;
+        text-decoration: none;
+        transition: transform 0.3s, background-color 0.3s ease;
+        align-self: auto;
+        align-items: center;
+      }
+
+      .btn-primary:hover {
+        background-color: var(--primary-color);
+        transform: translateY(-8px);
+      }
+
+      .toggle-mode {
+        cursor: pointer;
+        padding: 10px;
+        border-radius: 50%;
+        background-color: rgba(255, 255, 255, 0.3);
+        transition: background-color 0.3s ease;
+      }
+
+      .toggle-mode:hover {
+        background-color: rgba(255, 255, 255, 0.5);
+      }
+
+      footer {
+        background: var(--gradient-color);
+        color: white;
+        text-align: center;
+        padding: 20px;
+        margin-top: auto;
+        font-size: 0.9rem;
+      }
+
+      footer .contact-info {
+        font-size: 0.9rem;
+      }
+
+      footer p {
+        margin-bottom: 5px;
+      }
+
+      footer .contact-info {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+      }
+
+      /* Responsive design */
+      @media (max-width: 768px) {
+        header {
+          flex-direction: row;
+          gap: 15px;
+        }
+
+        nav {
+          gap: 15px;
+        }
+
+        .container {
+          padding: 20px;
+        }
+
+        h1 {
+          font-size: 2.5rem;
+        }
+
+        p {
+          font-size: 1rem;
+        }
+
+        .btn-primary {
+          font-size: 1rem;
+        }
+      }
+      
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #2c3e50;
+  }
+
+  .logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ecf0f1;
+  }
+
+  nav {
+    display: flexbox;
+    align-items: center;
+  }
+
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+  }
+
+  .nav-links li a {
+    color: #ecf0f1;
+    text-decoration: none;
+    font-size: 18px;
+  }
+
+  /* Hide the menu icon by default */
+  .menu-icon {
+    display: none;
+    font-size: 24px;
+    color: #ecf0f1;
+    cursor: pointer;
+  }
+
+  /* Mobile Styles */
+  @media (max-width: 768px) {
+    .nav-links {
+      display: none;
+      flex-direction: row;
+      position: absolute;
+      top: 60px;
+      right: 0;
+      background-color: #34495e;
+      width: 100%;
+    }
+
+/* Initially hide the menu in mobile view */
+.nav-links {
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  top: 60px;
+  right: 0;
+  background-color: #34495e;
+  width: 100%;
+  text-align: center;
+  z-index: 1000; /* Ensure it's on top */
+}
+
+/* Show the menu when the "show" class is applied */
+.nav-links.show {
+  display: flex;
+}
+
+/* Adjust the icon size and visibility */
+.menu-icon {
+  display: none;
+  font-size: 24px;
+  color: #ecf0f1;
+  cursor: pointer;
+}
+
+/* Mobile Styles */
+@media (max-width: 10px) {
+  .menu-icon {
+    display: block; /* Show the menu icon on smaller screens */
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+  }
+}
+
+
+    .nav-links.show {
+      display: flex;
+    }
+
+    .nav-links li {
+      text-align: center;
+      padding: 15px 0;
+    }
+
+    .menu-icon {
+      display: block;
+    }
+  }
+</style>
+
+    <script>
+      // Display loading screen for 2 seconds
+      window.addEventListener("load", function () {
+        const loader = document.querySelector(".loading-screen");
+        setTimeout(() => {
+          loader.style.display = "none"; // Hide the loader after 2 seconds
+        }, 2000);
+      });
+
+      function toggleTheme() {
+        const currentTheme = document.documentElement.getAttribute("data-theme");
+        if (currentTheme === "dark") {
+          document.documentElement.setAttribute("data-theme", "light");
+        } else {
+          document.documentElement.setAttribute("data-theme", "dark");
+        }
+      }
+
+    </script>
+  </head>
+
+  <body>
+    <!-- Loading screen -->
+    <div class="loading-screen">
+      <div class="spinner"></div>
+    </div>
+
+    <header>
+      <div class="logo"> <img src="https://freesvg.org/img/ethereum-classic-logo.png" alt="Shopkart Logo" style="height: 20px;"> ShopKart</div> 
+      <nav>
+        {% if user.is_authenticated %}
+          <ul class="nav-links">
+            {% if user.is_authenticated %}
+            <li><a href="/profile">Profile</a></li>
+            <li><a href="/tracer">GPS Trace</a></li>
+            <li><a href="/cart">Cart</a></li>
+            <li><a href="/wishlist">Wishlist</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/contact">Contact</a></li>
+            <li><a href="/logout">Log Out</a></li>
+            {% endif %}
+          </ul>
+          <div class="menu-icon" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+          </div>
+        
+        {% else %}
+        <pre>                                                                                                                             </pre>
+        <a href="{% url 'social:begin' 'auth0' %}?process=login">Login</a>
+        <a href="{% url 'social:begin' 'auth0' %}?process=signup">Sign Up</a>
+        {% endif %}
+      </nav>
+      <div class="toggle-mode" onclick="toggleTheme()">🌗</div>
+    </header>
+
+    <section class="features">
+      {% if user.is_authenticated %}
+      <br /><br />
+      <h1>Welcome User,</h1>
+      <p> Explore the Mindblowing Features</p>
+      {% else %}
+      <br /><br />
+      <h1>Consider Login or Signup to get full Access</h1>
+      <p> Unlock the power of secure authentication with a modern and sleek interface.</p>
+      <center>
+        <a href="{% url 'social:begin' 'auth0' %}?process=login" class="btn-primary">Get Started</a>
+      </center>
+      {% endif %}
+    </section>
+
+    <div class="container">
+      {% block body %} {% endblock %}
+    </div>
+
+    <footer>
+      <p>&copy; 2024 Shopkart. All Rights Reserved.</p>
+      <div class="contact-info">
+        <p>Contact: +91 XXXXX XXXXX | Email: sample@sample.com</p>
+        <p>Address: 123 Green Street, Chennai, India</p>
+      </div>
+    </footer>
+  </body>
+</html>
+

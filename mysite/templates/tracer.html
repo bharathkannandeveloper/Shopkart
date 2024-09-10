@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vehicle Tracker Simulation on Map</title>
+
+    <!-- Leaflet.js CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+        }
+
+        .header {
+            background-color: #27ae60;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 2em;
+            font-weight: bold;
+        }
+
+        #map {
+            height: 90vh; /* Full screen height except header */
+        }
+
+        .leaflet-container {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Fancy Header -->
+    <div class="header">
+        Vehicle Tracker Simulation on Interactive Map
+    </div>
+
+    <!-- Map Container -->
+    <div id="map"></div>
+
+    <!-- Leaflet.js and JavaScript for Map and Vehicle Movement -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        // Initialize the map
+        const map = L.map('map').setView([13.0827, 80.2707], 13); // Chennai as center
+
+        // Set up OpenStreetMap tile layer
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '© OpenStreetMap'
+        }).addTo(map);
+
+        // Define vehicle marker (you can replace the icon if you like)
+        const vehicleIcon = L.icon({
+            iconUrl: 'https://static-00.iconduck.com/assets.00/location-position-icon-410x512-o0z8tofd.png',
+            iconSize: [38, 38], // size of the icon
+            iconAnchor: [19, 19], // point of the icon which will correspond to marker's location
+        });
+
+        // Add vehicle marker to the map (start position)
+        const vehicleMarker = L.marker([13.0827, 80.2707], { icon: vehicleIcon }).addTo(map);
+
+        // Define a route (set of lat/lng coordinates)
+        const route = [
+            [13.0827, 80.2707], // Starting point: Chennai
+            [13.0800, 80.2600], // Some random locations for the simulation
+            [13.0750, 80.2500],
+            [13.0700, 80.2400],
+            [13.0650, 80.2300],
+            [13.0827, 80.2707], // Starting point: Chennai
+            [13.0800, 80.2600], // Some random locations for the simulation
+            [13.0750, 80.2500],
+            [13.0700, 80.2400],
+            [13.0650, 80.2300]
+            [13.0827, 80.2707], // Starting point: Chennai
+            [13.0800, 80.2600], // Some random locations for the simulation
+            [13.0750, 80.2500],
+            [13.0700, 80.2400],
+            [13.0650, 80.2300]
+            [13.0827, 80.2707], // Starting point: Chennai
+            [13.0800, 80.2600], // Some random locations for the simulation
+            [13.0750, 80.2500],
+            [13.0700, 80.2400],
+            [13.0650, 80.2300]
+            [13.0827, 80.2707], // Starting point: Chennai
+            [13.0800, 80.2600], // Some random locations for the simulation
+            [13.0750, 80.2500],
+            [13.0700, 80.2400],
+            [13.0650, 80.2300],
+            [13.0827, 80.2707], // Starting point: Chennai
+            [13.0800, 80.2600], // Some random locations for the simulation
+            [13.0750, 80.2500],
+            [13.0700, 80.2400],
+            [13.0650, 80.2300],
+            [13.0827, 80.2707], // Starting point: Chennai
+            [13.0800, 80.2600], // Some random locations for the simulation
+            [13.0750, 80.2500],
+            [13.0700, 80.2400],
+            [13.0650, 80.2300],
+            [13.0827, 80.2707], // Starting point: Chennai
+            [13.0800, 80.2600], // Some random locations for the simulation
+            [13.0750, 80.2500],
+            [13.0700, 80.2400],
+            [13.0650, 80.2300],
+            [13.0827, 80.2707], // Starting point: Chennai
+            [13.0800, 80.2600], // Some random locations for the simulation
+            [13.0750, 80.2500],
+            [13.0700, 80.2400],
+            [13.0650, 80.2300],
+            [13.0827, 80.2707], // Starting point: Chennai
+            [13.0800, 80.2600], // Some random locations for the simulation
+            [13.0750, 80.2500],
+            [13.0700, 80.2400],
+            [13.0650, 80.2300],
+            [13.0827, 80.2707], // Starting point: Chennai
+            [13.0800, 80.2600], // Some random locations for the simulation
+            [13.0750, 80.2500],
+            [13.0700, 80.2400],
+            [13.0650, 80.2300],
+            [13.0827, 80.2707], // Starting point: Chennai
+            [13.0800, 80.2600], // Some random locations for the simulation
+            [13.0750, 80.2500],
+            [13.0700, 80.2400],
+            [13.0650, 80.2300],
+            [13.0827, 80.2707], // Starting point: Chennai
+            [13.0800, 80.2600], // Some random locations for the simulation
+            [13.0750, 80.2500],
+            [13.0700, 80.2400],
+            [13.0650, 80.2300],[13.0827, 80.2707], // Starting point: Chennai
+            [13.0800, 80.2600], // Some random locations for the simulation
+            [13.0750, 80.2500],
+            [13.0700, 80.2400],
+            [13.0650, 80.2300]
+        ];
+
+        let routeIndex = 0;
+
+        // Function to move vehicle along the route
+        function moveVehicle() {
+            if (routeIndex < route.length) {
+                vehicleMarker.setLatLng(route[routeIndex]);
+                routeIndex++;
+                setTimeout(moveVehicle, 2000); // Move every 2 seconds
+            }
+        }
+
+        // Start moving vehicle when the page loads
+        window.onload = function() {
+            moveVehicle();
+        };
+    </script>
+</body>
+</html>

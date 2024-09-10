@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            background-color: #4CAF50; /* Green background */
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px 8px 0 0;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+        .cart-section {
+            margin: 20px 0;
+        }
+        .cart-section h2 {
+            color: #4CAF50; /* Green text */
+            font-size: 2em;
+            border-bottom: 2px solid #4CAF50;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #ddd;
+        }
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+        .item-info {
+            flex: 2;
+        }
+        .item-info h3 {
+            margin: 0;
+            font-size: 1.5em;
+            color: #4CAF50; /* Green text */
+        }
+        .item-info p {
+            margin: 5px 0;
+        }
+        .item-quantity {
+            flex: 1;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .item-quantity input {
+            width: 40px;
+            padding: 5px;
+            text-align: center;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .item-actions {
+            flex: 1;
+            text-align: right;
+        }
+        .item-actions button {
+            background-color: #4CAF50; /* Green background */
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+        .item-actions button:hover {
+            background-color: #45a049;
+        }
+        .cart-summary {
+            margin-top: 30px;
+            text-align: right;
+        }
+        .cart-summary h3 {
+            font-size: 1.5em;
+            color: #4CAF50;
+        }
+        .cart-summary p {
+            font-size: 1.2em;
+        }
+        .checkout-btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2em;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        .checkout-btn:hover {
+            background-color: #45a049;
+        }
+        .footer {
+            background-color: #4CAF50; /* Green background */
+            color: white;
+            padding: 10px;
+            text-align: center;
+            border-radius: 0 0 8px 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Your Shopping Cart</h1>
+        </div>
+        <div class="cart-section">
+            <h2>Items in Your Cart</h2>
+
+            <div class="cart-item">
+                <div class="item-info">
+                    <h3>Product Name 1</h3>
+                    <p>$99.99</p>
+                </div>
+                <div class="item-quantity">
+                    <label for="quantity">Quantity:</label>
+                    <input type="number" id="quantity" name="quantity" value="1" min="1">
+                </div>
+                <div class="item-actions">
+                    <button>Remove</button>
+                </div>
+            </div>
+
+            <div class="cart-item">
+                <div class="item-info">
+                    <h3>Product Name 2</h3>
+                    <p>$49.99</p>
+                </div>
+                <div class="item-quantity">
+                    <label for="quantity2">Quantity:</label>
+                    <input type="number" id="quantity2" name="quantity2" value="2" min="1">
+                </div>
+                <div class="item-actions">
+                    <button>Remove</button>
+                </div>
+            </div>
+
+            <!-- Add more cart items here -->
+        </div>
+
+        <div class="cart-summary">
+            <h3>Cart Summary</h3>
+            <p><strong>Subtotal:</strong> $199.97</p>
+            <p><strong>Tax:</strong> $19.99</p>
+            <p><strong>Total:</strong> $219.96</p>
+            <button class="checkout-btn">Proceed to Checkout</button>
+        </div>
+
+        <div class="footer">
+            <p>&copy; 2024 Your Company. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            background-color: #4CAF50; /* Green background */
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px 8px 0 0;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+        .contact-section {
+            margin: 20px 0;
+        }
+        .contact-section h2 {
+            color: #4CAF50; /* Green text */
+            font-size: 2em;
+            border-bottom: 2px solid #4CAF50;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .contact-section p {
+            line-height: 1.6;
+        }
+        .contact-info {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+        }
+        .contact-info div {
+            flex: 1;
+            margin: 0 10px;
+        }
+        .contact-info div h3 {
+            margin-bottom: 10px;
+            color: #4CAF50;
+        }
+        .contact-form {
+            margin-top: 30px;
+        }
+        .contact-form label {
+            font-size: 1.2em;
+            color: #333;
+        }
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .contact-form button {
+            background-color: #4CAF50; /* Green button */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .contact-form button:hover {
+            background-color: #45a049;
+        }
+        .footer {
+            background-color: #4CAF50; /* Green background */
+            color: white;
+            padding: 10px;
+            text-align: center;
+            border-radius: 0 0 8px 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Contact Us</h1>
+        </div>
+        <div class="contact-section">
+            <h2>We'd love to hear from you!</h2>
+            <p>If you have any questions, suggestions, or need support, feel free to reach out to us. Our team is here to assist you.</p>
+        </div>
+
+        <div class="contact-info">
+            <div>
+                <h3>Email</h3>
+                <p>support@yourcompany.com</p>
+            </div>
+            <div>
+                <h3>Phone</h3>
+                <p>+91 98765 43210</p>
+            </div>
+            <div>
+                <h3>Location</h3>
+                <p>123 Green Street, Chennai, India</p>
+            </div>
+        </div>
+
+        <div class="contact-form">
+            <h2>Get in Touch</h2>
+            <form action="/submit_contact" method="POST">
+                <label for="name">Your Name</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">Your Email</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="message">Your Message</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+
+        <div class="footer">
+            <p>&copy; 2024 Your Company. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>

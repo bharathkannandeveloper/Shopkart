@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wishlist</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            background-color: #4CAF50; /* Green background */
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px 8px 0 0;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+        .wishlist-item {
+            border-bottom: 1px solid #ddd;
+            padding: 15px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .wishlist-item:last-child {
+            border-bottom: none;
+        }
+        .item-info {
+            flex: 1;
+        }
+        .item-info h2 {
+            margin: 0;
+            font-size: 1.5em;
+            color: #4CAF50; /* Green text */
+        }
+        .item-info p {
+            margin: 5px 0;
+        }
+        .item-actions {
+            display: flex;
+            align-items: center;
+        }
+        .item-actions button {
+            background-color: #4CAF50; /* Green background */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+        .item-actions button:hover {
+            background-color: #45a049; /* Darker green on hover */
+        }
+        .footer {
+            background-color: #4CAF50; /* Green background */
+            color: white;
+            padding: 10px;
+            text-align: center;
+            border-radius: 0 0 8px 8px;
+        }
+
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Your Wishlist</h1>
+        </div>
+        <div class="wishlist-item">
+            <div class="item-info">
+                <h2>Product Name 1</h2>
+                <p>Description of the first product on your wishlist.</p>
+                <p><strong>Price:</strong> $99.99</p>
+            </div>
+            <div class="item-actions">
+                <button>Remove</button>
+                <button>Add to Cart</button>
+            </div>
+        </div>
+        <div class="wishlist-item">
+            <div class="item-info">
+                <h2>Product Name 2</h2>
+                <p>Description of the second product on your wishlist.</p>
+                <p><strong>Price:</strong> $49.99</p>
+            </div>
+            <div class="item-actions">
+                <button>Remove</button>
+                <button>Add to Cart</button>
+            </div>
+        </div>
+        <!-- Add more wishlist items here -->
+        <div class="footer">
+            <p>&copy; 2024 Your Company. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>
